@@ -3,7 +3,10 @@ package car
 import (
 	"car_project/internal/model"
 	"context"
+	"go.uber.org/zap"
 )
+
+var logger, _ = zap.NewProduction()
 
 type сarRepository interface {
 	// GetCars получает данных с фильтрацией по всем полям и пагинацией

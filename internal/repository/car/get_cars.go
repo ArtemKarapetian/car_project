@@ -23,7 +23,7 @@ var (
 	`
 )
 
-func (r *repository) GetCars(ctx context.Context, filter *model.Car, limit, offset int) ([]*model.Car, error) {
+func (r *Repository) GetCars(ctx context.Context, filter *model.Car, limit, offset int) ([]*model.Car, error) {
 	repoFilter := converter.ToRepoFromCar(filter)
 	cars := make([]*repomodel.Car, 0)
 	err := r.db.Select(ctx, cars, getCarsQuery, repoFilter.RegNum, repoFilter.Mark, repoFilter.Model, repoFilter.Year, repoFilter.Owner.Name, repoFilter.Owner.Surname, repoFilter.Owner.Patronymic, limit, offset)

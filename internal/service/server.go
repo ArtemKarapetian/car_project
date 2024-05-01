@@ -1,10 +1,10 @@
-package httpserver
+package service
 
 import (
 	"net/http"
 )
 
-type carHandler interface {
+type CarHandler interface {
 	AddCars(http.ResponseWriter, *http.Request)
 	DeleteCar(http.ResponseWriter, *http.Request)
 	GetCars(http.ResponseWriter, *http.Request)
@@ -12,10 +12,10 @@ type carHandler interface {
 }
 
 type Server struct {
-	carHandler carHandler
+	carHandler CarHandler
 }
 
-func NewServer(carHandler carHandler) *Server {
+func NewServer(carHandler CarHandler) *Server {
 	return &Server{
 		carHandler: carHandler,
 	}

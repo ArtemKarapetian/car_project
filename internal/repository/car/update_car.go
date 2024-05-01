@@ -12,7 +12,7 @@ var (
 	updateCarQuery = "UPDATE car SET %s WHERE reg_num = $%d"
 )
 
-func (r *repository) UpdateCar(ctx context.Context, regNum string, car *model.Car) error {
+func (r *Repository) UpdateCar(ctx context.Context, regNum string, car *model.Car) error {
 	repoCar := converter.ToRepoFromCar(car)
 
 	var updateFields []string

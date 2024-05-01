@@ -6,7 +6,7 @@ var (
 	addCarsQuery = `INSERT INTO car (reg_num) VALUES ($1)`
 )
 
-func (r *repository) AddCars(ctx context.Context, regNums []string) error {
+func (r *Repository) AddCars(ctx context.Context, regNums []string) error {
 	_, err := r.db.Exec(ctx, addCarsQuery, regNums)
 	return err
 }
