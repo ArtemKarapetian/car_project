@@ -5,6 +5,7 @@ import (
 	"car_project/internal/db/postgres"
 	"car_project/internal/repository/car"
 	"car_project/internal/service"
+	carservice "car_project/internal/service/car"
 	"context"
 	"log"
 	"net"
@@ -66,7 +67,8 @@ func (a *App) initServiceProvider(_ context.Context) error {
 func (a *App) initServer(ctx context.Context) error {
 	a.serviceProvider.db, _ = postgres.NewDb(ctx, env)
 	a.serviceProvider.repo = car.NewRepository(a.serviceProvider.db)
-	a.server = service.NewServer(a.serviceProvider.repo)
+	a.serviceProvider.handler = carservice.NewHandler(a.serviceProvider.repo)
+	a.server = service.NewServer(a.serviceProvider.handler)
 	return nil
 }
 
